@@ -1,0 +1,767 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta36.dtd" >
+   <PATCH nodename="C:\Users\ryan.jones\Documents\vvvv\particles\heightfield_movers.v4p" scrollx="3915" scrolly="4545" systemname="heightfield_movers" filename="C:\Users\ryan.jones\Documents\vvvv\particles\heightfield_movers.v4p">
+   <BOUNDS type="Window" left="-28800" top="0" width="12375" height="17235">
+   </BOUNDS>
+   <NODE systemname="Renderer (DX11 TempTarget)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 TempTarget)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="4935" top="14385" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4935" top="14385" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Texture SizeXY" visible="1">
+   </PIN>
+   <PIN pinname="Buffers" visible="1">
+   </PIN>
+   <PIN pinname="View" visible="1">
+   </PIN>
+   <PIN pinname="Projection" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Generate Mip Maps" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Mip Map Levels" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Depth Buffer Mode" slicecount="1" values="Standard">
+   </PIN>
+   <PIN pinname="Depth Buffer Format" slicecount="1" values="D32_Float">
+   </PIN>
+   <PIN pinname="Depth Buffer" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="1">
+   <BOUNDS type="Node" left="5130" top="18270" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5130" top="18270" width="6000" height="4500">
+   </BOUNDS>
+   <BOUNDS type="Window" left="-16620" top="30" width="16620" height="17370">
+   </BOUNDS>
+   <PIN pinname="Actual BackBuffer SizeXY" visible="1">
+   </PIN>
+   <PIN pinname="Layers" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Actual BackBuffer SizeXY" dstnodeid="0" dstpinname="Texture SizeXY" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="3230" y="21445">
+   </LINKPOINT>
+   <LINKPOINT x="1105" y="11675">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="FullscreenQuad (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\modules\FullscreenQuad (DX11.Layer).v4p" nodename="FullscreenQuad (DX11.Layer)" componentmode="Hidden" id="2">
+   <BOUNDS type="Node" left="5280" top="17610" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Layer" dstnodeid="1" dstpinname="Layers">
+   </LINK>
+   <NODE systemname="Camera (Transform Orbit)" filename="%VVVV%\lib\packs\VL.EditingFramework.0.79.17-g63a3d4ba77\vvvv\nodes\modules\Camera (Transform Orbit).v4p" nodename="Camera (Transform Orbit)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="8895" top="13215" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="View" visible="1">
+   </PIN>
+   <PIN pinname="Projection" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="View" dstnodeid="0" dstpinname="View" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="8695" y="13933">
+   </LINKPOINT>
+   <LINKPOINT x="7520" y="13923">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="HeightFieldSDF (SF2D.Operators)" filename="%VVVV%\packs\FieldTrip\nodes\modules\SF2D\Operators\HeightFieldSDF (SF2D.Operators).v4p" nodename="HeightFieldSDF (SF2D.Operators)" componentmode="Hidden" id="5">
+   <BOUNDS type="Node" left="5745" top="4980" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Height Field Function" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Noise (SF2D.Sources)" filename="%VVVV%\packs\FieldTrip\nodes\modules\SF2D\Sources\Noise (SF2D.Sources).v4p" nodename="Noise (SF2D.Sources)" componentmode="Hidden" id="6">
+   <BOUNDS type="Node" left="5745" top="3645" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Basis" slicecount="1" values="simplex">
+   </PIN>
+   </NODE>
+   <NODE systemname="Noise (SF2D.Sources)" filename="%VVVV%\packs\FieldTrip\nodes\modules\SF2D\Sources\Noise (SF2D.Sources).v4p" nodename="Noise (SF2D.Sources)" componentmode="Hidden" id="7">
+   <BOUNDS type="Node" left="6360" top="4080" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Frequency" slicecount="1" values="0.53">
+   </PIN>
+   <PIN pinname="Basis" slicecount="1" values="worleyFast">
+   </PIN>
+   <PIN pinname="Amplitude" slicecount="1" values="1.41">
+   </PIN>
+   </NODE>
+   <NODE systemname="ScalarOp (SF2D.Operations)" filename="%VVVV%\packs\FieldTrip\nodes\modules\SF2D\Operators\ScalarOp (SF2D.Operations).v4p" nodename="ScalarOp (SF2D.Operations)" componentmode="Hidden" id="9">
+   <BOUNDS type="Node" left="5730" top="4515" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Output" dstnodeid="5" dstpinname="Height Field Function">
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Output" dstnodeid="9" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Output" dstnodeid="9" dstpinname="Input 2">
+   </LINK>
+   <NODE systemname="AspectRatio (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="AspectRatio (DX11.Layer)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="5070" top="13935" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5070" top="13935" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Layer In" visible="1">
+   </PIN>
+   <PIN pinname="Layer Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Layer Out" dstnodeid="0" dstpinname="Layer">
+   </LINK>
+   <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="12">
+   <BOUNDS type="Node" left="5745" top="13380" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5745" top="13380" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Layer 1" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Layer Out" visible="1">
+   </PIN>
+   <PIN pinname="Layer 2" visible="1">
+   </PIN>
+   <PIN pinname="Render State" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="12" srcpinname="Layer Out" dstnodeid="11" dstpinname="Layer In">
+   </LINK>
+   <NODE systemname="PhongDirectional (DX11.Particles.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Effects\PhongDirectional (DX11.Particles.Effect).v4p" nodename="PhongDirectional (DX11.Particles.Effect)" componentmode="Hidden" id="13">
+   <BOUNDS type="Node" left="9450" top="12435" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="ParticleSystemBuffers" visible="1">
+   </PIN>
+   <PIN pinname="Geometry" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="13" srcpinname="Layer" dstnodeid="12" dstpinname="Layer 2" linkstyle="VHV">
+   <LINKPOINT x="9450" y="13195">
+   </LINKPOINT>
+   <LINKPOINT x="6165" y="12860">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="ParticleSystem (DX11.Particles.Core)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Core\ParticleSystem (DX11.Particles.Core).v4p" nodename="ParticleSystem (DX11.Particles.Core)" componentmode="Hidden" id="14">
+   <BOUNDS type="Node" left="9900" top="10935" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="ParticleSystemBuffers" visible="1">
+   </PIN>
+   <PIN pinname="Layer In" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="14" srcpinname="ParticleSystemBuffers" dstnodeid="13" dstpinname="ParticleSystemBuffers">
+   </LINK>
+   <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="15">
+   <BOUNDS type="Node" left="9900" top="10500" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9900" top="10500" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Layer Out" visible="1">
+   </PIN>
+   <PIN pinname="Layer 1" visible="1">
+   </PIN>
+   <PIN pinname="Layer 2" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Input Count" slicecount="1" values="5">
+   </PIN>
+   <PIN pinname="Layer 3" visible="1">
+   </PIN>
+   <PIN pinname="Layer 4" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Layer 5" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Layer Out" dstnodeid="14" dstpinname="Layer In">
+   </LINK>
+   <NODE systemname="Emitter (DX11.Particles.Emitter DynamicBuffer)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter DynamicBuffer).v4p" nodename="Emitter (DX11.Particles.Emitter DynamicBuffer)" componentmode="Hidden" id="16">
+   <BOUNDS type="Node" left="10080" top="6450" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Position Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Lifespan Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Emitter Size" visible="1">
+   </PIN>
+   <PIN pinname="Emit Count" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="16" srcpinname="Layer" dstnodeid="15" dstpinname="Layer 1" linkstyle="PolyLine">
+   </LINK>
+   <NODE systemname="ClosestPointOnSDF (SF3D.Usages 3D Buffer)" filename="%VVVV%\packs\FieldTrip\nodes\modules\SF3D\Usages\ClosestPointOnSDF (SF3D.Usages 3D Buffer).v4p" nodename="ClosestPointOnSDF (SF3D.Usages 3D Buffer)" componentmode="Hidden" id="17">
+   <BOUNDS type="Node" left="10545" top="4635" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="3D Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Sample Position 3D Buffer" visible="1">
+   </PIN>
+   <PIN pinname="offset" slicecount="1" values="0.08">
+   </PIN>
+   <PIN pinname="Spread Count" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="3D Buffer" dstnodeid="16" dstpinname="Position Buffer">
+   </LINK>
+   <NODE systemname="DynamicBuffer (DX11.Buffer Value)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer Value)" componentmode="Hidden" id="18">
+   <BOUNDS type="Node" left="11040" top="5880" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="11040" top="5880" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Data" slicecount="1" values="20">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="18" srcpinname="Buffer" dstnodeid="16" dstpinname="Lifespan Buffer">
+   </LINK>
+   <NODE systemname="Heading (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Heading (DX11.Particles.Modifiers).v4p" nodename="Heading (DX11.Particles.Modifiers)" componentmode="Hidden" id="19">
+   <BOUNDS type="Node" left="10260" top="7080" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Box (DX11.Geometry)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Box (DX11.Geometry)" componentmode="Hidden" id="20">
+   <BOUNDS type="Node" left="9330" top="10905" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9330" top="10905" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Geometry Out" visible="1">
+   </PIN>
+   <PIN pinname="SizeXYZ" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="20" srcpinname="Geometry Out" dstnodeid="13" dstpinname="Geometry">
+   </LINK>
+   <NODE systemname="DynamicBuffer (DX11.Buffer 3d)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer 3d)" componentmode="Hidden" id="21">
+   <BOUNDS type="Node" left="10845" top="4065" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10845" top="4065" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Buffer" visible="1">
+   </PIN>
+   <PIN pinname="DataXYZ" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="21" srcpinname="Buffer" dstnodeid="17" dstpinname="Sample Position 3D Buffer">
+   </LINK>
+   <NODE systemname="RandomSpread (Spreads 3d)" filename="%VVVV%\lib\nodes\modules\2D\RandomSpread (Spreads 3d).v4p" nodename="RandomSpread (Spreads 3d)" componentmode="Hidden" id="22">
+   <BOUNDS type="Node" left="10830" top="3570" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="XYZ" visible="1">
+   </PIN>
+   <PIN pinname="Spread Count" visible="1">
+   </PIN>
+   <PIN pinname="SizeXYZ" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="22" srcpinname="XYZ" dstnodeid="21" dstpinname="DataXYZ">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="23" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="11520" top="1980" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="11520" top="1980" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="60000">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Spread Count|">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="23" srcpinname="Y Output Value" dstnodeid="22" dstpinname="Spread Count" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="11045" y="2943">
+   </LINKPOINT>
+   <LINKPOINT x="12610" y="2803">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="24" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="9540" top="2565" width="795" height="720">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9540" top="2565" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="100,3,100">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="SizeXYZ">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="24" srcpinname="Y Output Value" dstnodeid="22" dstpinname="SizeXYZ" linkstyle="Bezier">
+   <LINKPOINT x="9600" y="3413">
+   </LINKPOINT>
+   <LINKPOINT x="11250" y="3413">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="23" srcpinname="Y Output Value" dstnodeid="17" dstpinname="Spread Count" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="11045" y="3490">
+   </LINKPOINT>
+   <LINKPOINT x="12670" y="3350">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="23" srcpinname="Y Output Value" dstnodeid="16" dstpinname="Emitter Size" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="11535" y="4320">
+   </LINKPOINT>
+   <LINKPOINT x="10275" y="4320">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="23" srcpinname="Y Output Value" dstnodeid="16" dstpinname="Emit Count" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="10985" y="2073">
+   </LINKPOINT>
+   <LINKPOINT x="10465" y="1933">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="ScaleByLifetime (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\ScaleByLifetime (DX11.Particles.Modifiers).v4p" nodename="ScaleByLifetime (DX11.Particles.Modifiers)" componentmode="Hidden" id="25">
+   <BOUNDS type="Node" left="10410" top="8310" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Scale Buffer" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="25" srcpinname="Layer" dstnodeid="15" dstpinname="Layer 3">
+   </LINK>
+   <NODE systemname="DynamicBuffer (DX11.Buffer 3d)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer 3d)" componentmode="Hidden" id="26">
+   <BOUNDS type="Node" left="12180" top="7665" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="12180" top="7665" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Buffer" visible="1">
+   </PIN>
+   <PIN pinname="DataXYZ" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="RandomSpread (Spreads 3d)" filename="%VVVV%\lib\nodes\modules\2D\RandomSpread (Spreads 3d).v4p" nodename="RandomSpread (Spreads 3d)" componentmode="Hidden" id="27">
+   <BOUNDS type="Node" left="12195" top="6765" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="XYZ" visible="1">
+   </PIN>
+   <PIN pinname="CenterXYZ" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="26" srcpinname="Buffer" dstnodeid="25" dstpinname="Scale Buffer" linkstyle="Bezier">
+   <LINKPOINT x="12130" y="8090">
+   </LINKPOINT>
+   <LINKPOINT x="10700" y="8125">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Abs (Complex)" nodename="Abs (Complex)" componentmode="Hidden" id="29">
+   <BOUNDS type="Node" left="12195" top="7245" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input Real" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="27" srcpinname="XYZ" dstnodeid="29" dstpinname="Input Real">
+   </LINK>
+   <LINK srcnodeid="29" srcpinname="Output" dstnodeid="26" dstpinname="DataXYZ">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="30" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="12855" top="5925" width="795" height="720">
+   </BOUNDS>
+   <BOUNDS type="Node" left="12855" top="5925" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0.12,0.1,0.26">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="30" srcpinname="Y Output Value" dstnodeid="27" dstpinname="CenterXYZ" linkstyle="Bezier">
+   <LINKPOINT x="12855" y="6690">
+   </LINKPOINT>
+   <LINKPOINT x="12255" y="6690">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="ParticleModifier (VF3D.Usages DX11.Particles.Modifiers)" filename="%VVVV%\packs\FieldTrip\nodes\modules\VF3D\Usages\ParticleModifier (VF3D.Usages DX11.Particles.Modifiers).v4p" nodename="ParticleModifier (VF3D.Usages DX11.Particles.Modifiers)" componentmode="Hidden" id="31">
+   <BOUNDS type="Node" left="14415" top="8175" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Modifier Out" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="19" srcpinname="Layer" dstnodeid="15" dstpinname="Layer 2">
+   </LINK>
+   <NODE systemname="Integrate (Differential)" nodename="Integrate (Differential)" componentmode="Hidden" id="32">
+   <BOUNDS type="Node" left="16800" top="4170" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Position In" slicecount="1" values="0.01">
+   </PIN>
+   <PIN pinname="Position Out" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Noise (SF3D.Sources)" filename="%VVVV%\packs\FieldTrip\nodes\modules\SF3D\Sources\Noise (SF3D.Sources).v4p" nodename="Noise (SF3D.Sources)" componentmode="Hidden" id="33">
+   <BOUNDS type="Node" left="16170" top="4605" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Domain Offset" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Frequency" slicecount="1" values="0.15">
+   </PIN>
+   <PIN pinname="Amplitude" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="32" srcpinname="Position Out" dstnodeid="33" dstpinname="Domain Offset">
+   </LINK>
+   <NODE systemname="Gradient (SF3D.Operators)" filename="%VVVV%\packs\FieldTrip\nodes\modules\SF3D\Operators\Gradient (SF3D.Operators).v4p" nodename="Gradient (SF3D.Operators)" componentmode="Hidden" id="34">
+   <BOUNDS type="Node" left="16155" top="5055" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="33" srcpinname="Output" dstnodeid="34" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Gradient (SF3D.Operators)" filename="%VVVV%\packs\FieldTrip\nodes\modules\SF3D\Operators\Gradient (SF3D.Operators).v4p" nodename="Gradient (SF3D.Operators)" componentmode="Hidden" id="35">
+   <BOUNDS type="Node" left="14655" top="6060" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Output" dstnodeid="35" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="5635" y="5625">
+   </LINKPOINT>
+   <LINKPOINT x="14825" y="5655">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Cross (VF3D.Operators)" filename="%VVVV%\packs\FieldTrip\nodes\modules\VF3D\Operators\Cross (VF3D.Operators).v4p" nodename="Cross (VF3D.Operators)" componentmode="Hidden" id="36">
+   <BOUNDS type="Node" left="15150" top="7005" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="35" srcpinname="Output" dstnodeid="36" dstpinname="Input 1" linkstyle="Bezier">
+   <LINKPOINT x="14715" y="6660">
+   </LINKPOINT>
+   <LINKPOINT x="15150" y="6660">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="VectorOp (VF3D.Operators)" filename="%VVVV%\packs\FieldTrip\nodes\modules\VF3D\Operators\VectorOp (VF3D.Operators).v4p" nodename="VectorOp (VF3D.Operators)" componentmode="Hidden" id="37">
+   <BOUNDS type="Node" left="15495" top="6645" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input 2 Default XYZ" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="34" srcpinname="Output" dstnodeid="37" dstpinname="Input 1" linkstyle="Bezier">
+   <LINKPOINT x="16155" y="5978">
+   </LINKPOINT>
+   <LINKPOINT x="15525" y="5978">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="37" srcpinname="Output" dstnodeid="36" dstpinname="Input 2">
+   </LINK>
+   <NODE systemname="Vector (3d Join)" nodename="Vector (3d Join)" componentmode="Hidden" id="38">
+   <BOUNDS type="Node" left="17640" top="5085" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="XYZ" visible="1">
+   </PIN>
+   <PIN pinname="X" slicecount="1" values="0.05">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="38" srcpinname="XYZ" dstnodeid="37" dstpinname="Input 2 Default XYZ" linkstyle="Bezier">
+   <LINKPOINT x="17640" y="5978">
+   </LINKPOINT>
+   <LINKPOINT x="15990" y="5978">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Normalize (VF3D.Operators)" filename="%VVVV%\packs\FieldTrip\nodes\modules\VF3D\Operators\Normalize (VF3D.Operators).v4p" nodename="Normalize (VF3D.Operators)" componentmode="Hidden" id="40">
+   <BOUNDS type="Node" left="15150" top="7425" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="36" srcpinname="Output" dstnodeid="40" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="40" srcpinname="Output" dstnodeid="31" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="41" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="8940" top="9675" width="795" height="720">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8940" top="9675" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0.2,0.2,2">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="41" srcpinname="Y Output Value" dstnodeid="20" dstpinname="SizeXYZ">
+   </LINK>
+   <LINK srcnodeid="31" srcpinname="Modifier Out" dstnodeid="15" dstpinname="Layer 4" linkstyle="Bezier">
+   <LINKPOINT x="14415" y="9285">
+   </LINKPOINT>
+   <LINKPOINT x="10620" y="9630">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Damper (Animation)" nodename="Damper (Animation)" componentmode="Hidden" id="43">
+   <BOUNDS type="Node" left="15060" top="10470" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Damper (3d Buffer)" filename="%VVVV%\packs\InstanceNoodles\nodes\modules\Compute\3D Buffer\Damper (3D Buffer)\Damper (3D Buffer).v4p" nodename="Damper (3d Buffer)" componentmode="Hidden" id="44">
+   <BOUNDS type="Node" left="15015" top="9720" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Vector3DDistance (Value Buffer)" filename="%VVVV%\packs\InstanceNoodles\nodes\modules\Compute\Value Buffer\Vector3DDistance (Value Buffer)\Vector3DDistance (Value Buffer).v4p" nodename="Vector3DDistance (Value Buffer)" componentmode="Hidden" id="52">
+   <BOUNDS type="Node" left="12345" top="9810" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Vector 1 Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Vector 2 Default" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="3D Buffer" dstnodeid="52" dstpinname="Vector 1 Buffer" hiddenwhenlocked="1" linkstyle="Bezier">
+   <LINKPOINT x="10590" y="7343">
+   </LINKPOINT>
+   <LINKPOINT x="12645" y="7343">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="53" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="12945" top="8925" width="795" height="720">
+   </BOUNDS>
+   <BOUNDS type="Node" left="12945" top="8925" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0,0,0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="53" srcpinname="Y Output Value" dstnodeid="52" dstpinname="Vector 2 Default">
+   </LINK>
+   <NODE systemname="ParticleModifier (VF3D.Usages DX11.Particles.Modifiers)" filename="%VVVV%\packs\FieldTrip\nodes\modules\VF3D\Usages\ParticleModifier (VF3D.Usages DX11.Particles.Modifiers).v4p" nodename="ParticleModifier (VF3D.Usages DX11.Particles.Modifiers)" componentmode="Hidden" id="55">
+   <BOUNDS type="Node" left="18555" top="8205" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Target Attribute" slicecount="1" values="|float4 color;|">
+   </PIN>
+   <PIN pinname="Modifier Out" visible="1">
+   </PIN>
+   <PIN pinname="Layer In" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="55" srcpinname="Modifier Out" dstnodeid="15" dstpinname="Layer 5" linkstyle="Bezier">
+   <LINKPOINT x="17785" y="9478">
+   </LINKPOINT>
+   <LINKPOINT x="11555" y="9468">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="ColorByDistance (DX11.Particles.Modifiers Advanced)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\ColorByDistance (DX11.Particles.Modifiers Advanced).v4p" nodename="ColorByDistance (DX11.Particles.Modifiers Advanced)" componentmode="Hidden" id="56">
+   <BOUNDS type="Node" left="18630" top="7590" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Color Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Radius" slicecount="1" values="25">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="56" srcpinname="Layer" dstnodeid="55" dstpinname="Layer In">
+   </LINK>
+   <NODE systemname="HSL (Color Join)" nodename="HSL (Color Join)" componentmode="Hidden" id="57">
+   <BOUNDS type="Node" left="18780" top="5940" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Hue" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Saturation" slicecount="1" values="2.19">
+   </PIN>
+   <PIN pinname="Lightness" slicecount="1" values="1.15">
+   </PIN>
+   </NODE>
+   <NODE systemname="LinearSpread (Spreads)" nodename="LinearSpread (Spreads)" componentmode="Hidden" id="58">
+   <BOUNDS type="Node" left="18765" top="5070" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Spread Count" slicecount="1" values="16">
+   </PIN>
+   <PIN pinname="Alignment" slicecount="1" values="Centered">
+   </PIN>
+   <PIN pinname="Input" slicecount="1" values="0.5">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="58" srcpinname="Output" dstnodeid="57" dstpinname="Hue">
+   </LINK>
+   <NODE nodename="IOBox (Color)" componentmode="InABox" id="59" systemname="IOBox (Color)">
+   <BOUNDS type="Box" left="18780" top="6480" width="3270" height="435">
+   </BOUNDS>
+   <BOUNDS type="Node" left="18780" top="6480" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Columns" slicecount="1" values="16">
+   </PIN>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Color Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="57" srcpinname="Output" dstnodeid="59" dstpinname="Color Input">
+   </LINK>
+   <NODE systemname="DynamicBuffer (DX11.Buffer Color)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer Color)" componentmode="Hidden" id="60">
+   <BOUNDS type="Node" left="18780" top="7080" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="18780" top="7080" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Data" visible="1">
+   </PIN>
+   <PIN pinname="Buffer" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="59" srcpinname="Color Output" dstnodeid="60" dstpinname="Data">
+   </LINK>
+   <LINK srcnodeid="60" srcpinname="Buffer" dstnodeid="56" dstpinname="Color Buffer">
+   </LINK>
+   <PACK Name="dx11" Version="1.0.5">
+   </PACK>
+   <PACK Name="addonpack" Version="36.0.0">
+   </PACK>
+   <NODE systemname="Timing (Debug)" nodename="Timing (Debug)" componentmode="Hidden" id="70">
+   <BOUNDS type="Node" left="10275" top="14055" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="frames per second" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="71">
+   <BOUNDS type="Box" left="10260" top="14865" width="705" height="615">
+   </BOUNDS>
+   <BOUNDS type="Node" left="10260" top="14865" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|frames per second|">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="21">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="70" srcpinname="frames per second" dstnodeid="71" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="74">
+   <BOUNDS type="Box" left="8895" top="16860" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8895" top="16860" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Writer (DX11.Texture 2d NRT Advanced)" filename="%VVVV%\packs\dx11\nodes\modules\WriterDX11NRT\Writer (DX11.Texture 2d NRT Advanced).v4p" nodename="Writer (DX11.Texture 2d NRT Advanced)" componentmode="Hidden" id="75">
+   <BOUNDS type="Node" left="8805" top="17655" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Projection Jitter" visible="1">
+   </PIN>
+   <PIN pinname="Texture" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Write" visible="1">
+   </PIN>
+   <PIN pinname="Path" slicecount="1" values="..\..\..\Desktop\render">
+   </PIN>
+   </NODE>
+   <NODE systemname="Multiply (Transform)" nodename="Multiply (Transform)" componentmode="Hidden" id="76">
+   <BOUNDS type="Node" left="9165" top="13740" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Transform In 2" visible="1">
+   </PIN>
+   <PIN pinname="Transform In 1" visible="1">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="75" srcpinname="Projection Jitter" dstnodeid="76" dstpinname="Transform In 2" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="10870" y="16480">
+   </LINKPOINT>
+   <LINKPOINT x="10145" y="13715">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Projection" dstnodeid="76" dstpinname="Transform In 1">
+   </LINK>
+   <LINK srcnodeid="76" srcpinname="Transform Out" dstnodeid="0" dstpinname="Projection" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="9165" y="14183">
+   </LINKPOINT>
+   <LINKPOINT x="7320" y="14183">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="74" srcpinname="Y Output Value" dstnodeid="75" dstpinname="Write">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Buffers" dstnodeid="2" dstpinname="Texture">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Buffers" dstnodeid="75" dstpinname="Texture">
+   </LINK>
+   </PATCH>
